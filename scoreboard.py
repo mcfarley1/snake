@@ -30,7 +30,7 @@ class Scoreboard(Turtle):
         if self.score > self.high_score:
             self.high_score = self.score
             with open("data.txt", mode="w") as record:
-                record.write(f"{self.name_data} {str(self.high_score)}")
+                record.write(f"{self.name_data} {self.high_score}")
         self.score = 0
         self.keep_score()
 
