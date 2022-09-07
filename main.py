@@ -18,6 +18,16 @@ screen.onkey(snake.down, "Down")
 food = Food()
 scoreboard = Scoreboard()
 
+
+def update_initials():
+    name_data = ""
+    initials = screen.textinput("Snake", "Enter your initials: ")
+    screen.listen()
+    for num in range(3):
+        name_data += initials[num].upper()
+    return name_data
+
+
 game_is_on = True
 
 while game_is_on:
@@ -35,11 +45,7 @@ while game_is_on:
     # Detect collision with wall.
     if snake.head.xcor() > 290 or snake.head.xcor() < -290 or snake.head.ycor() > 290 or snake.head.ycor() < -290:
         if scoreboard.score > scoreboard.high_score:
-            scoreboard.name_data = ""
-            initials = screen.textinput("Snake", "Enter your initials: ")
-            screen.listen()
-            for num in range(3):
-                scoreboard.name_data += initials[num].upper()
+            scoreboard.name_data = update_initials()
         scoreboard.reset()
         snake.reset()
 
@@ -47,11 +53,7 @@ while game_is_on:
     for segment in snake.segments[1:]:
         if snake.head.distance(segment) < 10:
             if scoreboard.score > scoreboard.high_score:
-                scoreboard.name_data = ""
-                initials = screen.textinput("Snake", "Enter your initials: ")
-                screen.listen()
-                for num in range(3):
-                    scoreboard.name_data += initials[num].upper()
+                scoreboard.name_data = update_initials()
             scoreboard.reset()
             snake.reset()
 
